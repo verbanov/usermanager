@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getById(Long id) {
         return userRepository.getUserById(id).orElseThrow(
-                () -> new DataProcessingException("Can't get product with id " + id));
+                () -> new DataProcessingException("Can't get user with id " + id));
     }
 
     @Override
