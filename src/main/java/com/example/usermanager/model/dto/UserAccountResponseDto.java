@@ -4,7 +4,7 @@ import java.util.Set;
 import lombok.Data;
 
 @Data
-public class UserResponseDto {
+public class UserAccountResponseDto {
     private Long id;
     private String username;
     private String firstName;

@@ -1,7 +1,7 @@
 package com.example.usermanager.service;
 
-import com.example.usermanager.exception.DataProcessingException;
 import com.example.usermanager.model.Role;
+import com.example.usermanager.model.Role.RoleName;
 import com.example.usermanager.repository.RoleRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +14,12 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role getRoleByRoleName(String roleName) {
-        return roleRepository.getRoleByRoleName(roleName).orElseThrow(
-                () -> new DataProcessingException(
-                        "Can't get role with roleName " + roleName));
+    public Role save(Role role) {
+        return roleRepository.save(role);
     }
 
     @Override
-    public Role save(Role role) {
-        return roleRepository.save(role);
+    public Role getRoleByRoleName(RoleName roleName) {
+        return roleRepository.getRoleByRoleName(roleName);
     }
 }

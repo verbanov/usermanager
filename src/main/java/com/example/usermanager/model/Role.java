@@ -1,7 +1,6 @@
 package com.example.usermanager.model;
 
-import lombok.Data;
-
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -10,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import java.util.Objects;
+import lombok.Data;
 
 @Entity
 @Data
@@ -27,8 +26,14 @@ public class Role {
     private RoleName roleName;
 
     public enum RoleName {
-        USER,
-        ADMIN;
+        USER("USER"),
+        ADMIN("ADMIN");
+
+        private String description;
+
+        RoleName(String description) {
+            this.description = description;
+        }
     }
 
     @Override
