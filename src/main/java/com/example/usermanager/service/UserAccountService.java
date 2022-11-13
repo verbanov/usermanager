@@ -2,6 +2,7 @@ package com.example.usermanager.service;
 
 import com.example.usermanager.model.UserAccount;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface UserAccountService {
@@ -13,5 +14,5 @@ public interface UserAccountService {
 
     Optional<UserAccount> getUserByUsername(String userName);
 
-    List<UserAccount> findAll();
+    List<UserAccount> findAll(Map<String, String> params);
 }

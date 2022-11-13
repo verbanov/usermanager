@@ -3,16 +3,23 @@ package com.example.usermanager.service;
 import com.example.usermanager.exception.DataProcessingException;
 import com.example.usermanager.model.UserAccount;
 import com.example.usermanager.repository.UserAccountRepository;
+import com.example.usermanager.repository.specification.SpecificationManager;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserAccountServiceImpl implements UserAccountService {
-    private UserAccountRepository userAccountRepository;
+    private final UserAccountRepository userAccountRepository;
+    private final SpecificationManager<UserAccount> userAccountSpecificationManager;
 
-    public UserAccountServiceImpl(UserAccountRepository userAccountRepository) {
+    public UserAccountServiceImpl(UserAccountRepository userAccountRepository,
+                                  SpecificationManager<UserAccount>
+                                          userAccountSpecificationManager) {
         this.userAccountRepository = userAccountRepository;
+        this.userAccountSpecificationManager = userAccountSpecificationManager;
     }
 
     @Override
@@ -37,7 +44,14 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
 
     @Override
-    public List<UserAccount> findAll() {
-        return userAccountRepository.findAll();
+    public List<UserAccount> findAll(Map<String, String> params) {
+        Specification<UserAccount> specification = null;
+        for (Map.Entry<String, String> entry : params.entrySet()) {
+            Specification<UserAccount> sp = userAccountSpecificationManager.get(entry.getKey(),
+                    entry.getValue().split(","));
+            specification = specification == null
+                    ? Specification.where(sp) : specification.and(sp);
+        }
+        return userAccountRepository.findAll(specification);
     }
 }
