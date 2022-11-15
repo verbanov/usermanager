@@ -46,7 +46,7 @@ class RoleRepositoryTest {
     }
 
     @Test
-    void shouldReturnRoleByRoleName_Ok() {
+    void shouldReturnRoleByRoleName() {
         RoleName userRole = RoleName.USER;
         Role expected = new Role();
         expected.setId(1L);

@@ -4,7 +4,8 @@ import com.example.usermanager.model.Role;
 import com.example.usermanager.model.Role.RoleName;
 import com.example.usermanager.model.Status;
 import com.example.usermanager.model.UserAccount;
-import org.apache.tomcat.jni.User;
+import java.time.LocalDateTime;
+import java.util.Set;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,9 +18,6 @@ import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
-
-import java.time.LocalDateTime;
-import java.util.Set;
 
 @DataJpaTest
 @Testcontainers
@@ -50,7 +48,6 @@ class UserAccountRepositoryTest {
         Role adminRole = new Role();
         adminRole.setRoleName(RoleName.ADMIN);
         userRole = roleRepository.save(userRole);
-        adminRole = roleRepository.save(adminRole);
 
         UserAccount bob = new UserAccount();
         bob.setUsername("bob");
@@ -64,7 +61,7 @@ class UserAccountRepositoryTest {
     }
 
     @Test
-    void shouldReturnUserAccountByUserName_Ok() {
+    void shouldReturnUserAccountByUserName() {
         Role userRole = new Role();
         userRole.setRoleName(RoleName.USER);
         userRole.setId(1L);

@@ -11,8 +11,6 @@ import com.example.usermanager.model.dto.UserAccountResponseDto;
 import com.example.usermanager.service.RoleService;
 import com.example.usermanager.service.UserAccountService;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
