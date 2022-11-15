@@ -16,6 +16,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeHttpRequests((requests) -> requests
+                .antMatchers(HttpMethod.GET, "/user/inject").permitAll()
                 .antMatchers(HttpMethod.GET, "/user").hasAnyRole("ADMIN","USER")
                 .antMatchers(HttpMethod.GET,"/user/{id}").hasAnyRole("ADMIN","USER")
                 .antMatchers(HttpMethod.POST,"/user/new").hasRole("ADMIN")
