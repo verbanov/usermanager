@@ -31,11 +31,15 @@ public class UserAccount {
     @SequenceGenerator(name = "user_id_seq",
             sequenceName = "user_id_seq",
             allocationSize = 1)
+    @Column(name = "id")
     private Long id;
-    @Column(unique = true)
+    @Column(name = "user_name",unique = true)
     private String username;
+    @Column(name = "password")
     private String password;
+    @Column(name = "first_name")
     private String firstName;
+    @Column(name = "last_name")
     private String lastName;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -43,7 +47,9 @@ public class UserAccount {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
     @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private Status status;
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 }
 

@@ -1,4 +1,4 @@
-#Tue Nov 15 18:19:03 CET 2022
+#Thu Nov 17 08:08:23 CET 2022
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\repository\\specification\\UserAccountUsernameInSpecification.java=1668351723546
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\mapper\\UserAccountMapper.java=1668338349357
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\mapper\\UserAccountMapperImpl.java=1668344912885
@@ -6,25 +6,25 @@ D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\ex
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\lib\\ValidUserName.java=1668342727218
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\lib\\PasswordValidator.java=1668251904873
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\model\\dto\\UserAccountRequestDto.java=1668344828418
-D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\controller\\UserAccountController.java=1668527220825
+D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\controller\\UserAccountController.java=1668668890260
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\repository\\specification\\UserAccountRoleInSpecification.java=1668350849149
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\service\\CustomUserDetailsService.java=1668344798886
-D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\model\\Role.java=1668253165445
+D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\model\\Role.java=1668666414743
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\exception\\DataProcessingException.java=1668190128381
-D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\resources\\application.properties=1668188889671
+D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\resources\\application.properties=1668639486131
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\repository\\specification\\SpecificationManager.java=1668349225146
-D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\service\\UserAccountServiceImpl.java=1668532625381
-D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\repository\\UserAccountRepository.java=1668532591734
+D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\service\\UserAccountServiceImpl.java=1668533923692
+D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\repository\\UserAccountRepository.java=1668666976130
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\UserManagerApplication.java=1668186459572
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\repository\\specification\\SpecificationProvider.java=1668349225132
-D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\model\\UserAccount.java=1668437202078
+D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\model\\UserAccount.java=1668666691591
 configuration*?=A1BDCFDFD14D9BED8332A3142B9FD66909C1F52A
-D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\service\\UserAccountService.java=1668349225103
+D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\service\\UserAccountService.java=1668533916374
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\model\\dto\\UserAccountResponseDto.java=1668338349301
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\lib\\ValidPassword.java=1668251913266
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\service\\RoleServiceImpl.java=1668344788108
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\config\\SecurityConfig.java=1668532621809
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\repository\\specification\\UserAccountSpecificationManager.java=1668351714742
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\service\\RoleService.java=1668343087796
-D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\repository\\RoleRepository.java=1668344804300
+D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\repository\\RoleRepository.java=1668667191430
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\lib\\UserNameValidator.java=1668251662145

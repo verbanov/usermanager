@@ -1,6 +1,7 @@
 package com.example.usermanager.model;
 
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,8 +22,10 @@ public class Role {
     @SequenceGenerator(name = "role_id_seq",
             sequenceName = "role_id_seq",
             allocationSize = 1)
+    @Column(name = "id")
     private Long id;
     @Enumerated(EnumType.STRING)
+    @Column(name = "role_name")
     private RoleName roleName;
 
     public enum RoleName {
