@@ -1,4 +1,4 @@
-#Thu Nov 17 08:08:23 CET 2022
+#Thu Nov 17 08:44:19 CET 2022
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\repository\\specification\\UserAccountUsernameInSpecification.java=1668351723546
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\mapper\\UserAccountMapper.java=1668338349357
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\mapper\\UserAccountMapperImpl.java=1668344912885
@@ -23,7 +23,7 @@ D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\ex
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\model\\dto\\UserAccountResponseDto.java=1668338349301
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\lib\\ValidPassword.java=1668251913266
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\service\\RoleServiceImpl.java=1668344788108
-D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\config\\SecurityConfig.java=1668532621809
+D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\config\\SecurityConfig.java=1668671025267
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\repository\\specification\\UserAccountSpecificationManager.java=1668351714742
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\service\\RoleService.java=1668343087796
 D\:\\JavaProjects\\Practice\\UserManager\\user-manager\\src\\main\\java\\com\\example\\usermanager\\repository\\RoleRepository.java=1668667191430
