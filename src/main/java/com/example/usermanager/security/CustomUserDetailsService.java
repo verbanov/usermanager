@@ -1,8 +1,9 @@
-package com.example.usermanager.service;
+package com.example.usermanager.security;
 
 import com.example.usermanager.exception.DataProcessingException;
 import com.example.usermanager.model.Status;
 import com.example.usermanager.model.UserAccount;
+import com.example.usermanager.service.UserAccountService;
 import java.util.Optional;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;

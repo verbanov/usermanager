@@ -3,7 +3,7 @@
 CREATE TABLE IF NOT EXISTS roles
 (
     id BIGINT NOT NULL,
-    role_name character varying (256) NOT NULL,
+    role_name character varying (10) NOT NULL,
     CONSTRAINT role_pk PRIMARY KEY (id)
 );
 

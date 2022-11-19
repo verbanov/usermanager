@@ -1,25 +1,50 @@
 package com.example.usermanager.service;
 
 import com.example.usermanager.exception.DataProcessingException;
+import com.example.usermanager.model.Status;
 import com.example.usermanager.model.UserAccount;
 import com.example.usermanager.repository.UserAccountRepository;
 import com.example.usermanager.repository.specification.SpecificationManager;
+import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserAccountServiceImpl implements UserAccountService {
     private final UserAccountRepository userAccountRepository;
     private final SpecificationManager<UserAccount> userAccountSpecificationManager;
+    private final PasswordEncoder passwordEncoder;
 
     public UserAccountServiceImpl(UserAccountRepository userAccountRepository,
                                   SpecificationManager<UserAccount>
-                                          userAccountSpecificationManager) {
+                                          userAccountSpecificationManager,
+                                  PasswordEncoder passwordEncoder) {
         this.userAccountRepository = userAccountRepository;
         this.userAccountSpecificationManager = userAccountSpecificationManager;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    @Override
+    public Optional<UserAccount> getUserByUsername(String userName) {
+        return userAccountRepository.getUserByUsername(userName);
+    }
+
+    @Override
+    public UserAccount register(UserAccount userAccount) {
+        Optional<UserAccount> userFromDb = getUserByUsername(userAccount.getUsername());
+        if (userFromDb.isPresent()) {
+            throw new DataProcessingException("User is already present in db, username: "
+                    + userAccount.getUsername());
+        }
+        userAccount.setPassword(passwordEncoder.encode(userAccount.getPassword()));
+        userAccount.setCreatedAt(LocalDateTime.now().withNano(0));
+        userAccount.setStatus(Status.INACTIVE);
+        return save(userAccount);
     }
 
     @Override
@@ -29,6 +54,7 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Override
     public UserAccount update(UserAccount userAccount) {
+        userAccount.setCreatedAt(getById(userAccount.getId()).getCreatedAt());
         return userAccountRepository.save(userAccount);
     }
 
@@ -36,11 +62,6 @@ public class UserAccountServiceImpl implements UserAccountService {
     public UserAccount getById(Long id) {
         return userAccountRepository.getUserById(id).orElseThrow(
                 () -> new DataProcessingException("Can't get user with id " + id));
-    }
-
-    @Override
-    public Optional<UserAccount> getUserByUsername(String userName) {
-        return userAccountRepository.getUserByUsername(userName);
     }
 
     @Override
@@ -53,5 +74,18 @@ public class UserAccountServiceImpl implements UserAccountService {
                     ? Specification.where(sp) : specification.and(sp);
         }
         return userAccountRepository.findAll(specification);
+    }
+
+    @Override
+    public UserAccount changeStatus(Long id) {
+        UserAccount userAccount = getById(id);
+        Status status = userAccount.getStatus();
+        Status[] values = Status.values();
+        userAccount.setStatus(Arrays.stream(values)
+                .filter(s -> s.name() != status.name())
+                .findFirst()
+                .get());
+        save(userAccount);
+        return userAccount;
     }
 }

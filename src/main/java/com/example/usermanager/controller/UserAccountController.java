@@ -1,16 +1,13 @@
 package com.example.usermanager.controller;
 
-import com.example.usermanager.exception.DataProcessingException;
 import com.example.usermanager.mapper.UserAccountMapper;
 import com.example.usermanager.model.UserAccount;
 import com.example.usermanager.model.dto.UserAccountRequestDto;
 import com.example.usermanager.model.dto.UserAccountResponseDto;
 import com.example.usermanager.service.RoleService;
 import com.example.usermanager.service.UserAccountService;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserAccountController {
     private RoleService roleService;
     private final UserAccountService userAccountService;
@@ -50,30 +47,26 @@ public class UserAccountController {
         return userAccountMapper.modelToDto(userAccountService.getById(id));
     }
 
-    @PostMapping("/new")
+    @PostMapping()
     public UserAccountResponseDto create(@RequestBody
                                              @Valid UserAccountRequestDto userAccountRequestDto) {
-        Optional<UserAccount> userFromDb = userAccountService
-                .getUserByUsername(userAccountRequestDto.getUsername());
-        if (userFromDb.isPresent()) {
-            throw new DataProcessingException("User is already present in db, username: "
-                    + userAccountRequestDto.getUsername());
-        }
         UserAccount userAccount = userAccountMapper.dtoToModel(userAccountRequestDto);
-        userAccount.setCreatedAt(LocalDateTime.now().withNano(0));
-
-        userAccount = userAccountService.save(userAccount);
+        userAccount = userAccountService.register(userAccount);
         return userAccountMapper.modelToDto(userAccount);
     }
 
-    @PutMapping("/{id}/edit")
+    @PutMapping("/{id}")
     public UserAccountResponseDto update(@PathVariable Long id,
                                          @RequestBody
                                          @Valid UserAccountRequestDto userAccountRequestDto) {
         UserAccount userAccount = userAccountMapper.dtoToModel(userAccountRequestDto);
         userAccount.setId(id);
-        userAccount.setCreatedAt(userAccountService.getById(id).getCreatedAt());
         userAccount = userAccountService.update(userAccount);
         return userAccountMapper.modelToDto(userAccount);
+    }
+
+    @PutMapping("/change-status")
+    public UserAccountResponseDto lockUnlock(@RequestParam Long id) {
+        return userAccountMapper.modelToDto(userAccountService.changeStatus(id));
     }
 }

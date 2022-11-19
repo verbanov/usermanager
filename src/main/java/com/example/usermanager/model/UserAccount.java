@@ -31,7 +31,6 @@ public class UserAccount {
     @SequenceGenerator(name = "user_id_seq",
             sequenceName = "user_id_seq",
             allocationSize = 1)
-    @Column(name = "id")
     private Long id;
     @Column(name = "user_name",unique = true)
     private String username;

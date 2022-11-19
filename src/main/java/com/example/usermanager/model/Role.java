@@ -22,7 +22,6 @@ public class Role {
     @SequenceGenerator(name = "role_id_seq",
             sequenceName = "role_id_seq",
             allocationSize = 1)
-    @Column(name = "id")
     private Long id;
     @Enumerated(EnumType.STRING)
     @Column(name = "role_name")

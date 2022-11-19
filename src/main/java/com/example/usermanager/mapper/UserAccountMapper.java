@@ -5,7 +5,7 @@ import com.example.usermanager.model.dto.UserAccountRequestDto;
 import com.example.usermanager.model.dto.UserAccountResponseDto;
 
 public interface UserAccountMapper {
-    public UserAccountResponseDto modelToDto(UserAccount userAccount);
+    UserAccountResponseDto modelToDto(UserAccount userAccount);
 
-    public UserAccount dtoToModel(UserAccountRequestDto userAccountRequestDto);
+    UserAccount dtoToModel(UserAccountRequestDto userAccountRequestDto);
 }
