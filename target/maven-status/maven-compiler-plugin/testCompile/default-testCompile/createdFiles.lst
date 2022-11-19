@@ -1,5 +1,4 @@
 com\example\usermanager\repository\UserAccountRepositoryTest.class
 com\example\usermanager\UserAccountManagerApplicationTests.class
-com\example\usermanager\controller\UserAccountControllerTest.class
 com\example\usermanager\service\CustomUserDetailsServiceTest.class
 com\example\usermanager\repository\RoleRepositoryTest.class

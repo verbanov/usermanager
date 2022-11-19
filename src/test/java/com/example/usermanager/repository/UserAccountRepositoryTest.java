@@ -32,7 +32,7 @@ class UserAccountRepositoryTest {
     @DynamicPropertySource
     static void setDatabaseProperties(DynamicPropertyRegistry propertyRegistry) {
         propertyRegistry.add("spring.datasource.url", database::getJdbcUrl);
-        propertyRegistry.add("spring.datasource.password=", database::getPassword);
+        propertyRegistry.add("spring.datasource.password", database::getPassword);
         propertyRegistry.add("spring.datasource.username", database::getUsername);
     }
 
@@ -40,25 +40,6 @@ class UserAccountRepositoryTest {
     private RoleRepository roleRepository;
     @Autowired
     private UserAccountRepository userAccountRepository;
-
-    @BeforeEach
-    void setUp() {
-        Role userRole = new Role();
-        userRole.setRoleName(RoleName.USER);
-        Role adminRole = new Role();
-        adminRole.setRoleName(RoleName.ADMIN);
-        userRole = roleRepository.save(userRole);
-
-        UserAccount bob = new UserAccount();
-        bob.setUsername("bob");
-        bob.setPassword("$2a$10$LnT3pLUtTatnl1Ze73M3GuVrCIstVlXh778APMxkjyQ6u6LjWQAmm");
-        bob.setFirstName("FirstBob");
-        bob.setLastName("LastBob");
-        bob.setRoles(Set.of(userRole));
-        bob.setStatus(Status.valueOf("ACTIVE"));
-        bob.setCreatedAt(LocalDateTime.now().withNano(0));
-        userAccountRepository.save(bob);
-    }
 
     @Test
     void shouldReturnUserAccountByUserName() {
@@ -69,7 +50,7 @@ class UserAccountRepositoryTest {
         String userName = "bob";
         expected.setId(1L);
         expected.setUsername(userName);
-        expected.setPassword("$2a$10$LnT3pLUtTatnl1Ze73M3GuVrCIstVlXh778APMxkjyQ6u6LjWQAmm");
+        expected.setPassword("$2a$10$OfLJB.nP5INfLEbuN4zck.mg7vN3y04/XRImnjK0iPakTu7VtRwnC");
         expected.setFirstName("FirstBob");
         expected.setLastName("LastBob");
         expected.setRoles(Set.of(userRole));

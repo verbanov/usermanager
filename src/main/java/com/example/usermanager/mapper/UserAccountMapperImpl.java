@@ -9,18 +9,14 @@ import com.example.usermanager.model.dto.UserAccountResponseDto;
 import com.example.usermanager.service.RoleService;
 import java.util.Set;
 import java.util.stream.Collectors;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserAccountMapperImpl implements UserAccountMapper {
     private final RoleService roleService;
-    private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserAccountMapperImpl(RoleService roleService,
-                                 BCryptPasswordEncoder passwordEncoder) {
+    public UserAccountMapperImpl(RoleService roleService) {
         this.roleService = roleService;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -43,7 +39,7 @@ public class UserAccountMapperImpl implements UserAccountMapper {
     public UserAccount dtoToModel(UserAccountRequestDto userAccountRequestDto) {
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(userAccountRequestDto.getUsername());
-        userAccount.setPassword(passwordEncoder.encode(userAccountRequestDto.getPassword()));
+        userAccount.setPassword(userAccountRequestDto.getPassword());
         userAccount.setFirstName(userAccountRequestDto.getFirstName());
         userAccount.setLastName(userAccountRequestDto.getLastName());
         RoleName roleName = RoleName.valueOf(userAccountRequestDto.getRole());

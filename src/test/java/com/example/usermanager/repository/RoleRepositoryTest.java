@@ -28,22 +28,12 @@ class RoleRepositoryTest {
     @DynamicPropertySource
     static void setDatabaseProperties(DynamicPropertyRegistry propertyRegistry) {
         propertyRegistry.add("spring.datasource.url", database::getJdbcUrl);
-        propertyRegistry.add("spring.datasource.password=", database::getPassword);
+        propertyRegistry.add("spring.datasource.password", database::getPassword);
         propertyRegistry.add("spring.datasource.username", database::getUsername);
     }
 
     @Autowired
     private RoleRepository roleRepository;
-
-    @BeforeEach
-    void setUp() {
-        Role userRole = new Role();
-        userRole.setRoleName(RoleName.USER);
-        Role adminRole = new Role();
-        adminRole.setRoleName(RoleName.ADMIN);
-        roleRepository.save(userRole);
-        roleRepository.save(adminRole);
-    }
 
     @Test
     void shouldReturnRoleByRoleName() {
