@@ -36,7 +36,8 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Override
     public UserAccount register(UserAccount userAccount) {
-        Optional<UserAccount> userFromDb = userAccountRepository.getUserByUsername(userAccount.getUsername());
+        Optional<UserAccount> userFromDb = userAccountRepository
+                .getUserByUsername(userAccount.getUsername());
         if (userFromDb.isPresent()) {
             throw new DataProcessingException("User is already present in db, username: "
                     + userAccount.getUsername());
@@ -83,10 +84,9 @@ public class UserAccountServiceImpl implements UserAccountService {
         Status status = userAccount.getStatus();
         Status[] values = Status.values();
         userAccount.setStatus(Arrays.stream(values)
-                .filter(s -> s.name() != status.name())
+                .filter(s -> !s.name().equals(status.name()))
                 .findFirst()
-                .orElseThrow(
-                        () -> new DataProcessingException("Can't change status for user with id " + id)));
+                .get());
         return userAccountRepository.save(userAccount);
     }
 }

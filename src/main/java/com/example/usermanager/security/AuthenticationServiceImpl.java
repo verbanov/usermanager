@@ -22,8 +22,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public UserAccount login(String login, String password) {
         Optional<UserAccount> optionalUser = userAccountService.getUserByUsername(login);
-        String encodePassword = passwordEncoder.encode(password);
-        if (optionalUser.isEmpty() || optionalUser.get().getPassword().equals(encodePassword)) {
+        if (optionalUser.isEmpty()
+                || !passwordEncoder.matches(password, optionalUser.get().getPassword())) {
             throw new DataProcessingException("Wrong username or password");
         }
         if (optionalUser.get().getStatus().equals(Status.INACTIVE)) {
