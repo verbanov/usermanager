@@ -36,7 +36,8 @@ public class UserAccountServiceImpl implements UserAccountService {
 
     @Override
     public UserAccount register(UserAccount userAccount) {
-        Optional<UserAccount> userFromDb = getUserByUsername(userAccount.getUsername());
+        Optional<UserAccount> userFromDb = userAccountRepository
+                .getUserByUsername(userAccount.getUsername());
         if (userFromDb.isPresent()) {
             throw new DataProcessingException("User is already present in db, username: "
                     + userAccount.getUsername());
@@ -44,7 +45,7 @@ public class UserAccountServiceImpl implements UserAccountService {
         userAccount.setPassword(passwordEncoder.encode(userAccount.getPassword()));
         userAccount.setCreatedAt(LocalDateTime.now().withNano(0));
         userAccount.setStatus(Status.INACTIVE);
-        return save(userAccount);
+        return userAccountRepository.save(userAccount);
     }
 
     @Override
@@ -55,6 +56,7 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Override
     public UserAccount update(UserAccount userAccount) {
         userAccount.setCreatedAt(getById(userAccount.getId()).getCreatedAt());
+        userAccount.setPassword(passwordEncoder.encode(userAccount.getPassword()));
         return userAccountRepository.save(userAccount);
     }
 
@@ -82,10 +84,9 @@ public class UserAccountServiceImpl implements UserAccountService {
         Status status = userAccount.getStatus();
         Status[] values = Status.values();
         userAccount.setStatus(Arrays.stream(values)
-                .filter(s -> s.name() != status.name())
+                .filter(s -> !s.name().equals(status.name()))
                 .findFirst()
                 .get());
-        save(userAccount);
-        return userAccount;
+        return userAccountRepository.save(userAccount);
     }
 }
