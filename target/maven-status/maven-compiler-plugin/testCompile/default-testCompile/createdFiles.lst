@@ -1,4 +1,0 @@
-com\example\usermanager\repository\UserAccountRepositoryTest.class
-com\example\usermanager\service\CustomUserDetailsServiceTest.class
-com\example\usermanager\repository\RoleRepositoryTest.class
-com\example\usermanager\security\AuthenticationServiceImplTest.class
