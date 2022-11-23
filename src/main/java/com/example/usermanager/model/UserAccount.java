@@ -17,6 +17,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Getter
@@ -47,6 +48,7 @@ public class UserAccount {
     @Column(name = "status")
     private Status status;
     @Column(name = "created_at")
+    @CreationTimestamp
     private LocalDateTime createdAt;
 }
 

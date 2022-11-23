@@ -4,8 +4,8 @@ import com.example.usermanager.model.Status;
 import com.example.usermanager.model.UserAccount;
 import com.example.usermanager.repository.UserAccountRepository;
 import com.example.usermanager.repository.specification.SpecificationManager;
-import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -13,8 +13,11 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+
 @Service
 public class UserAccountServiceImpl implements UserAccountService {
+    private static Map<Status, Status> statuses;
     private final UserAccountRepository userAccountRepository;
     private final SpecificationManager<UserAccount> userAccountSpecificationManager;
     private final PasswordEncoder passwordEncoder;
@@ -42,7 +45,6 @@ public class UserAccountServiceImpl implements UserAccountService {
                     + userAccount.getUsername());
         }
         userAccount.setPassword(passwordEncoder.encode(userAccount.getPassword()));
-        userAccount.setCreatedAt(LocalDateTime.now().withNano(0));
         userAccount.setStatus(Status.INACTIVE);
         return userAccountRepository.save(userAccount);
     }
@@ -80,12 +82,20 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Override
     public UserAccount changeStatus(Long id) {
         UserAccount userAccount = getById(id);
-        Status status = userAccount.getStatus();
-        Status[] values = Status.values();
-        userAccount.setStatus(Arrays.stream(values)
-                .filter(s -> !s.name().equals(status.name()))
-                .findFirst()
-                .get());
+        Status currentStatus = userAccount.getStatus();
+        Status newStatus = statuses.get(currentStatus);
+        userAccount.setStatus(newStatus);
         return userAccountRepository.save(userAccount);
+    }
+
+    @PostConstruct
+    public void createStatusMap() {
+        statuses = new HashMap<>();
+        Status[] values = Status.values();
+        for (Status value : values) {
+            statuses.put(value, Arrays.stream(values)
+                    .filter(v -> !v.name().equals(value.name()))
+                    .findFirst().get());
+        }
     }
 }
