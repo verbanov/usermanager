@@ -7,7 +7,6 @@ import com.example.usermanager.model.UserAccount;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Set;
-
 import com.example.usermanager.security.CustomUserDetailsService;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;

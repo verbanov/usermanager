@@ -16,13 +16,12 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @Table(name = "users")
 public class UserAccount {
     @Id
@@ -49,6 +48,7 @@ public class UserAccount {
     @Column(name = "status")
     private Status status;
     @Column(name = "created_at")
+    @CreationTimestamp
     private LocalDateTime createdAt;
 }
 

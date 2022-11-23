@@ -1,11 +1,13 @@
 package com.example.usermanager.security;
 
-import com.example.usermanager.exception.DataProcessingException;
 import com.example.usermanager.model.Role;
 import com.example.usermanager.model.Role.RoleName;
 import com.example.usermanager.model.Status;
 import com.example.usermanager.model.UserAccount;
 import com.example.usermanager.service.UserAccountServiceImpl;
+import java.time.LocalDateTime;
+import java.util.Optional;
+import java.util.Set;
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,16 +16,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.testcontainers.shaded.org.bouncycastle.math.ec.custom.sec.SecT113Field;
-
-import java.time.LocalDateTime;
-import java.util.Optional;
-import java.util.Set;
-
-import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
 class AuthenticationServiceImplTest {
@@ -70,7 +64,7 @@ class AuthenticationServiceImplTest {
         String userIsAbsent = "userIsAbsent";
         Mockito.when(userAccountService.getUserByUsername(userIsAbsent)).thenReturn(Optional.empty());
         String expectedMessage = "Wrong username or password";
-        Exception exception = Assert.assertThrows(DataProcessingException.class, () -> {
+        Exception exception = Assert.assertThrows(UsernameNotFoundException.class, () -> {
             authenticationService.login(userIsAbsent, password);
         });
         String actualMessage = exception.getMessage();
@@ -81,8 +75,9 @@ class AuthenticationServiceImplTest {
     void shouldReturnDataProcessingExceptionWhenPasswordIsIncorrect() {
         String incorrectPassword = "incorrectPassword";
         Mockito.when(userAccountService.getUserByUsername(username)).thenReturn(Optional.of(bob));
-        Mockito.when(passwordEncoder.matches(incorrectPassword, bob.getPassword())).thenReturn(false);        String expectedMessage = "Wrong username or password";
-        Exception exception = Assert.assertThrows(DataProcessingException.class, () -> {
+        Mockito.when(passwordEncoder.matches(incorrectPassword, bob.getPassword())).thenReturn(false);
+        String expectedMessage = "Wrong username or password";
+        Exception exception = Assert.assertThrows(RuntimeException.class, () -> {
             authenticationService.login(username, incorrectPassword);
         });
         String actualMessage = exception.getMessage();
@@ -95,7 +90,7 @@ class AuthenticationServiceImplTest {
         Mockito.when(userAccountService.getUserByUsername(username)).thenReturn(Optional.of(bob));
         Mockito.when(passwordEncoder.matches(password, bob.getPassword())).thenReturn(true);
         String expectedMessage = "User with this username is INACTIVE";
-        Exception exception = Assert.assertThrows(DataProcessingException.class, () -> {
+        Exception exception = Assert.assertThrows(RuntimeException.class, () -> {
             authenticationService.login(username, password);
         });
         String actualMessage = exception.getMessage();

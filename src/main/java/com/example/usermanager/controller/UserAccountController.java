@@ -4,7 +4,6 @@ import com.example.usermanager.mapper.UserAccountMapper;
 import com.example.usermanager.model.UserAccount;
 import com.example.usermanager.model.dto.UserAccountRequestDto;
 import com.example.usermanager.model.dto.UserAccountResponseDto;
-import com.example.usermanager.service.RoleService;
 import com.example.usermanager.service.UserAccountService;
 import java.util.List;
 import java.util.Map;
@@ -22,14 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/users")
 public class UserAccountController {
-    private RoleService roleService;
     private final UserAccountService userAccountService;
     private final UserAccountMapper userAccountMapper;
 
-    public UserAccountController(RoleService roleService,
-                                 UserAccountService userAccountService,
+    public UserAccountController(UserAccountService userAccountService,
                                  UserAccountMapper userAccountMapper) {
-        this.roleService = roleService;
         this.userAccountService = userAccountService;
         this.userAccountMapper = userAccountMapper;
     }
@@ -47,7 +43,7 @@ public class UserAccountController {
         return userAccountMapper.modelToDto(userAccountService.getById(id));
     }
 
-    @PostMapping()
+    @PostMapping
     public UserAccountResponseDto create(@RequestBody
                                              @Valid UserAccountRequestDto userAccountRequestDto) {
         UserAccount userAccount = userAccountMapper.dtoToModel(userAccountRequestDto);
