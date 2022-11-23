@@ -7,7 +7,6 @@ com\example\usermanager\repository\RoleRepository.class
 com\example\usermanager\UserManagerApplication.class
 com\example\usermanager\config\PasswordEncoderConfig.class
 com\example\usermanager\lib\PasswordValidator.class
-com\example\usermanager\exception\DataProcessingException.class
 com\example\usermanager\security\jwt\JwtTokenFilter.class
 com\example\usermanager\mapper\UserAccountMapperImpl.class
 com\example\usermanager\model\Status.class

@@ -1,6 +1,5 @@
 package com.example.usermanager.security.jwt;
 
-import com.example.usermanager.exception.DataProcessingException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
@@ -72,7 +71,7 @@ public class JwtTokenProvider {
             Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
             return !claimsJws.getBody().getExpiration().before(new Date());
         } catch (JwtException | IllegalArgumentException e) {
-            throw new DataProcessingException("Expired or invalid JWT token", e);
+            throw new RuntimeException("Expired or invalid JWT token", e);
         }
     }
 }

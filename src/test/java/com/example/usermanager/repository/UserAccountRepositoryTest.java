@@ -2,12 +2,9 @@ package com.example.usermanager.repository;
 
 import com.example.usermanager.model.Role;
 import com.example.usermanager.model.Role.RoleName;
-import com.example.usermanager.model.Status;
 import com.example.usermanager.model.UserAccount;
-import java.time.LocalDateTime;
 import java.util.Set;
 import org.junit.Assert;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

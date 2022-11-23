@@ -28,14 +28,8 @@ public class Role {
     private RoleName roleName;
 
     public enum RoleName {
-        USER("USER"),
-        ADMIN("ADMIN");
-
-        private String description;
-
-        RoleName(String description) {
-            this.description = description;
-        }
+        USER,
+        ADMIN;
     }
 
     @Override

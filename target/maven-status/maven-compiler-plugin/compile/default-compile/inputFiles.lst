@@ -11,7 +11,6 @@ D:\JavaProjects\Practice\UserManager\user-manager\src\main\java\com\example\user
 D:\JavaProjects\Practice\UserManager\user-manager\src\main\java\com\example\usermanager\security\jwt\JwtTokenFilter.java
 D:\JavaProjects\Practice\UserManager\user-manager\src\main\java\com\example\usermanager\model\UserAccount.java
 D:\JavaProjects\Practice\UserManager\user-manager\src\main\java\com\example\usermanager\service\RoleServiceImpl.java
-D:\JavaProjects\Practice\UserManager\user-manager\src\main\java\com\example\usermanager\exception\DataProcessingException.java
 D:\JavaProjects\Practice\UserManager\user-manager\src\main\java\com\example\usermanager\config\PasswordEncoderConfig.java
 D:\JavaProjects\Practice\UserManager\user-manager\src\main\java\com\example\usermanager\mapper\UserAccountMapper.java
 D:\JavaProjects\Practice\UserManager\user-manager\src\main\java\com\example\usermanager\mapper\UserAccountMapperImpl.java

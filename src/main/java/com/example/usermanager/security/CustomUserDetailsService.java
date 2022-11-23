@@ -1,6 +1,5 @@
 package com.example.usermanager.security;
 
-import com.example.usermanager.exception.DataProcessingException;
 import com.example.usermanager.model.Status;
 import com.example.usermanager.model.UserAccount;
 import com.example.usermanager.service.UserAccountService;
@@ -24,11 +23,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         Optional<UserAccount> optionalUser = userAccountService.getUserByUsername(username);
         UserBuilder builder;
         if (optionalUser.isEmpty()) {
-            throw new DataProcessingException("Wrong username or password");
+            throw new RuntimeException("Wrong username or password");
         }
         UserAccount existingUser = optionalUser.get();
         if (existingUser.getStatus().equals(Status.INACTIVE)) {
-            throw new DataProcessingException("User with this username is INACTIVE");
+            throw new RuntimeException("User with this username is INACTIVE");
         }
         builder = org.springframework.security.core.userdetails.User.withUsername(username);
         builder.password(existingUser.getPassword());

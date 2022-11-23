@@ -1,6 +1,5 @@
 package com.example.usermanager.service;
 
-import com.example.usermanager.exception.DataProcessingException;
 import com.example.usermanager.model.Status;
 import com.example.usermanager.model.UserAccount;
 import com.example.usermanager.repository.UserAccountRepository;
@@ -39,7 +38,7 @@ public class UserAccountServiceImpl implements UserAccountService {
         Optional<UserAccount> userFromDb = userAccountRepository
                 .getUserByUsername(userAccount.getUsername());
         if (userFromDb.isPresent()) {
-            throw new DataProcessingException("User is already present in db, username: "
+            throw new RuntimeException("User is already present in db, username: "
                     + userAccount.getUsername());
         }
         userAccount.setPassword(passwordEncoder.encode(userAccount.getPassword()));
@@ -63,7 +62,7 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Override
     public UserAccount getById(Long id) {
         return userAccountRepository.getUserById(id).orElseThrow(
-                () -> new DataProcessingException("Can't get user with id " + id));
+                () -> new RuntimeException("Can't get user with id " + id));
     }
 
     @Override

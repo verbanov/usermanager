@@ -1,10 +1,10 @@
 package com.example.usermanager.security;
 
-import com.example.usermanager.exception.DataProcessingException;
 import com.example.usermanager.model.Status;
 import com.example.usermanager.model.UserAccount;
 import com.example.usermanager.service.UserAccountService;
 import java.util.Optional;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -24,10 +24,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         Optional<UserAccount> optionalUser = userAccountService.getUserByUsername(login);
         if (optionalUser.isEmpty()
                 || !passwordEncoder.matches(password, optionalUser.get().getPassword())) {
-            throw new DataProcessingException("Wrong username or password");
+            throw new UsernameNotFoundException("Wrong username or password");
         }
         if (optionalUser.get().getStatus().equals(Status.INACTIVE)) {
-            throw new DataProcessingException("User with this username is INACTIVE");
+            throw new RuntimeException("User with this username is INACTIVE");
         }
         return optionalUser.get();
     }
