@@ -1,3 +1,16 @@
+1.Run Docker
+Use Windows command line 
+2.Start minikube
+minikube start --driver docker
+3. Run pods
+kubectl apply -f postgres-config.yaml
+kubectl apply -f postgres-secret.yaml
+kubectl apply -f postgres-storage.yaml
+kubectl apply -f postgres.yaml
+kubectl apply -f webapp.yaml
+
+
+
 # ****User Manager**** #
 
 ## 🚀 Description
